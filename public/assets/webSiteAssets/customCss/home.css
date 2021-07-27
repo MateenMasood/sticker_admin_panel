@@ -1,0 +1,23 @@
+.disply-hotel-list{
+    display: none;
+   
+}
+
+.disp-none{
+    display: none;
+}
+
+#hotelsList{
+    position: absolute;
+    z-index: 1;
+    margin-left: 15px;
+    width: -webkit-fill-available;
+}
+
+.hotel-items-list{
+    width: 75%;
+}
+
+.row{
+    transition: display 2s;
+}
