@@ -55,16 +55,13 @@
             <div class="card">
                 <div class="card-body">
 
-                    <table id="tblNearByPlaces" class="table table-striped table-bordered dt-responsive nowrap"
+                    <table id="tblLabels" class="table table-striped table-bordered dt-responsive nowrap"
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
                                 <th>Sr#</th>
-                                <th>Near By Places Id</th>
-                                <th> Title</th>
-                                <th> Hotel </th>
-                                <th> Created at </th>
-                                <th>status </th>
+                                <th>Label</th>
+                                <th> Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

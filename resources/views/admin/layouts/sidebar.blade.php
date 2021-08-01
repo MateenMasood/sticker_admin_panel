@@ -24,12 +24,6 @@
                 </li>
 
                 <li>
-                    <a href="{{ url('admin\label') }}" class=" waves-effect">
-                        <i class="ti-calendar"></i>
-                        <span>@lang('translation.Labels')</span>
-                    </a>
-                </li>
-                <li>
                     <a href="{{ url('admin\support') }}" class=" waves-effect">
                         <i class="ti-calendar"></i>
                         <span>@lang('translation.Support_Messages')</span>
@@ -63,22 +57,28 @@
                         <li><a href="{{ url('admin\app-user-log') }}">@lang('translation.App_Users_Log')</a></li>
                     </ul>
                 </li>
-
+                
                 <li>
                     <a href="{{ url('admin\slides') }}" class=" waves-effect">
                         <i class="ti-calendar"></i>
                         <span>@lang('translation.Slides')</span>
                     </a>
                 </li>
-
+                
                 <li>
                     <a href="{{ url('admin\stikers') }}" class=" waves-effect">
                         <i class="ti-calendar"></i>
                         <span>@lang('translation.stikers')</span>
                     </a>
                 </li>
-
                 <li>
+                    <a href="{{ url('admin\label') }}" class=" waves-effect">
+                        <i class="ti-calendar"></i>
+                        <span>@lang('translation.Labels')</span>
+                    </a>
+                </li>
+                
+                {{-- <li>
                     <a href="{{ url('admin\hotel') }}" class=" waves-effect">
                         <i class="ti-calendar"></i>
                         <span>@lang('translation.Hotel')</span>
@@ -101,7 +101,7 @@
                         <i class="ti-calendar"></i>
                         <span>@lang('translation.Coupons')</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="menu-title">@lang('translation.Settings')</li>
 
@@ -112,7 +112,7 @@
                     </a>
                 </li>
 
-                <li>
+                {{-- <li>
                     <a href="{{ url('admin\policy') }}" class=" waves-effect">
                         <i class="ti-calendar"></i>
                         <span>@lang('translation.Add_Policy')</span>
@@ -138,7 +138,7 @@
                         <i class="ti-calendar"></i>
                         <span>@lang('translation.Add_resort_facilities')</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -152,7 +152,7 @@
                     </ul>
                 </li>
 
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="waves-effect">
                         <i class="ti-receipt"></i>
                         <span class="badge badge-pill badge-success float-right">6</span>
@@ -306,7 +306,7 @@
                     </ul>
                 </li>
 
-            </ul>
+            </ul> --}}
         </div>
         <!-- Sidebar -->
     </div>

@@ -40,10 +40,10 @@ class LabelController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'status' => 'required|numeric',
+            'status' => 'required',
             'file.*' => 'required',
         ]);
-        $labelModel = new NearByPlace();
+        $labelModel = new Label();
 
         $file = $validatedData['file'][0];
         $imageName = Str::uuid().'.'.$file->getClientOriginalExtension();
@@ -55,10 +55,16 @@ class LabelController extends Controller
         $labelModel->size = $file->getSize();
         $labelModel->mime_type = $file->getMimeType();
         $labelModel->extension = $file->getClientOriginalExtension();
-        $labelModel->zone = $imageZone;
         $labelModel->status = '1';
-        $labelModel->label_status = $validatedData['status'] === 'on' ? 1 : 0;
+        $labelModel->label_status = $validatedData['status'] == 'on' ? 1 : 0;
         $labelModel->created_by = Auth::id();
+        if($labelModel->save()){
+            return response()->json(['status'=>'200' , 'message' => 'label created successfully.'] , 200);
+
+        }else{
+            return response()->json(['status'=>'400' , 'message' => 'Error! Please try again.'] , 200);
+
+        }
         // $imagePath = $file->storeAs('uploads/nearByPlacesImages' , $imageName);
 
         // Hash::make(time()+substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, $limit))
@@ -107,5 +113,9 @@ class LabelController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function datatable()
+    {
+        return \response()->json(Label::all() , 200);
     }
 }

@@ -10,31 +10,24 @@ $.ajaxSetup({
 $(document).ready(function () {
   $('#datatable').DataTable(); //Buttons examples
 
-  var table = $('#tblNearByPlaces').DataTable({
+  var table = $('#tblLabels').DataTable({
     lengthChange: false,
     dom: 'Bfrtip',
     buttons: ['copy', 'excel', 'pdf', 'csv' , 'colvis'],
 
     ajax: {
-        "url": "/admin/near-by-places/datatable",
+        "url": "/admin/label/datatable",
         "dataSrc": ""
     },
     columns: [
       { data : 'id'},
-      { data: "near_by_place_id"},
-      { data: "title"},
-      { data: "hotel.name"},
-      { render : function(data, type, row , full) {
-        return jQuery.timeago(row.created_at);
-
-       },
-      },
+      { data: "identifier"},
       { render : function(data, type, row , full) {
   
-        if (row.status == '1') {
-            return `<a href="javascript:void(0)" onclick="change_status('`+row.id+`' , '0')" class="badge badge-pill badge-success">active</a>`
+        if (row.label_status == '1') {
+            return `<span class="badge badge-pill badge-success">Yes, it is premium</span>`
         }else{
-            return `<a href="javascript:void(0)" onclick="change_status('`+row.id+`' , '1')" class="badge badge-pill badge-danger">deactive</a>`
+            return `<span class="badge badge-pill badge-success">No, it is not premium</span>`
         }
          },
       },
@@ -42,9 +35,9 @@ $(document).ready(function () {
       
          return `
          <div class="glyph">
-             <a href="/admin/near-by-places/`+row.id+`/edit"> <i class="mdi mdi-home-edit"></i> </a>
+             <a href="/admin/label/`+row.id+`/edit"> <i class="mdi mdi-home-edit"></i> </a>
              <a class="deleteRecord" href="#" onclick="deleteRecord('`+row.id+`')"> <i class="mdi mdi-delete-alert"></i> </a>
-             <a href="/admin/near-by-places/`+row.id+`"> <i class="mdi mdi-file-eye"></i> </a>
+             <a href="/label/`+row.id+`"> <i class="mdi mdi-file-eye"></i> </a>
          </div>
 
 
