@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Label;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use JavaScript;
+
+
 
 class LabelController extends Controller
 {
@@ -44,19 +47,18 @@ class LabelController extends Controller
             'file.*' => 'required',
         ]);
         $labelModel = new Label();
-
         $file = $validatedData['file'][0];
         $imageName = Str::uuid().'.'.$file->getClientOriginalExtension();
         $imagePath = $file->storeAs('uploads/labels' , $imageName);
         
-        $labelModel->identifier = '283746msdfjsdhf2834SDFS';
+        $labelModel->identifier = (string) Str::uuid();
         $labelModel->path = $imagePath;
         $labelModel->file_name = $imageName;
         $labelModel->size = $file->getSize();
         $labelModel->mime_type = $file->getMimeType();
         $labelModel->extension = $file->getClientOriginalExtension();
         $labelModel->status = '1';
-        $labelModel->label_status = $validatedData['status'] == 'on' ? 1 : 0;
+        $labelModel->label_status = $validatedData['status'] === 'yes' ? '1' : '0';
         $labelModel->created_by = Auth::id();
         if($labelModel->save()){
             return response()->json(['status'=>'200' , 'message' => 'label created successfully.'] , 200);
@@ -89,7 +91,12 @@ class LabelController extends Controller
      */
     public function edit($id)
     {
-        //
+        JavaScript::put([
+            'id' => $id,
+        ]);
+        $singleRecord  =  Label::find($id);
+        dd($singleRecord);
+        return \View::make('admin.labels.label-update' , compact('singleRecord'));
     }
 
     /**
@@ -112,7 +119,15 @@ class LabelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteRecord =  Label::find($id);
+
+        if($deleteRecord->delete()){
+            return response()->json('Your Record has been deleted.' , 200);
+
+        }else{
+            return response()->json(  'error occured please try again' , 200);
+
+        }
     }
     public function datatable()
     {

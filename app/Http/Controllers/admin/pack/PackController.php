@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePack;
+use App\Http\Requests\UpdatePack;
 use App\Models\Pack;
+use JavaScript;
 
 class PackController extends Controller
 {
@@ -39,14 +41,14 @@ class PackController extends Controller
     public function store(StorePack $request)
     {
         $validatedData = $request->validated();
-        $couponModel = new Pack();
-        $couponModel->title = $validatedData['title'];
-        $couponModel->identifier = $validatedData['identifier'];
-        $couponModel->publisher = $validatedData['publisher'];
-        $couponModel->status = '1';
-        $couponModel->created_by = Auth::id();
+        $packModel = new Pack();
+        $packModel->title = $validatedData['title'];
+        $packModel->identifier = $validatedData['identifier'];
+        $packModel->publisher = $validatedData['publisher'];
+        $packModel->status = '1';
+        $packModel->updated_by = Auth::id();
 
-        if($couponModel->save()){
+        if($packModel->save()){
             return response()->json(['status'=>'200' , 'message' => 'category created successfully.'] , 200);
 
         }else{
@@ -74,7 +76,12 @@ class PackController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        JavaScript::put([
+            'id' => $id,
+        ]);
+        $singleRecord  =  Pack::find($id);
+        return \View::make('admin.pack.pack-update' , compact('singleRecord'));
     }
 
     /**
@@ -84,9 +91,23 @@ class PackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePack $request, $id)
     {
-        //
+        $validatedData = $request->validated();
+        $packModel = Pack::find($id);
+        $packModel->title = $validatedData['title'];
+        $packModel->identifier = $validatedData['identifier'];
+        $packModel->publisher = $validatedData['publisher'];
+        $packModel->status = '1';
+        $packModel->created_by = Auth::id();
+
+        if($packModel->save()){
+            return response()->json(['status'=>'200' , 'message' => 'category updated successfully.'] , 200);
+
+        }else{
+            return response()->json(['status'=>'400' , 'message' => 'Error! Please try again.'] , 200);
+
+        }
     }
 
     /**

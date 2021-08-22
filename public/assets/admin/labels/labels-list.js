@@ -77,7 +77,7 @@ function deleteRecord($id) {
 
             // **************** delete record ajax **************
             $.ajax({
-                url: '/admin/near-by-places/'+$id,
+                url: '/admin/label/'+$id,
                 type: 'DELETE',
                 processData: false,
 
@@ -89,7 +89,7 @@ function deleteRecord($id) {
                             text: response,
                             type: "success"
                         }).then(function() {
-                            window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/admin/near-by-places/";
+                            window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/admin/label/";
 
                         });
 

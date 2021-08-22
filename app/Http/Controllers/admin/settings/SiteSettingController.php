@@ -137,7 +137,7 @@ class SiteSettingController extends Controller
 
         }catch (Exception $e) {
 
-                    return response()->json([ 'status'=>'500' , "message" =>$e->errorInfo[2]  ] ,500);
+                return response()->json([ 'status'=>'500' , "message" =>$e->errorInfo[2]  ] ,500);
 
             }
         }

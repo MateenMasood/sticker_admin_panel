@@ -36,7 +36,7 @@ $(document).ready(function () {
        // console.log(row)
          return `
          <div class="glyph">
-             <a href="/admin/promo-code/`+row.id+`/edit"> <i class="mdi mdi-home-edit"></i> </a>
+             <a href="/admin/pack/`+row.id+`/edit"> <i class="mdi mdi-home-edit"></i> </a>
              <a class="deleteRecord" href="#" onclick="deleteRecord('`+row.id+`')"> <i class="mdi mdi-delete-alert"></i> </a>
          </div>
 

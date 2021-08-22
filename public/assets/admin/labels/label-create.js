@@ -50,10 +50,10 @@ $(document).ready(()=>{
                     this.on("successmultiple", function(files, response) {
                         console.log('success sending')
                         console.log(response);
-                        $.notify(response , 'success'  );
-                        // window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/admin/near-by-places";
-
-
+                        $.notify(response.message , 'success'  );
+                        setTimeout(() => {
+                            window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/admin/label";
+                        }, 1500); 
 
                       });
                       this.on("errormultiple", function(files, response) {

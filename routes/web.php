@@ -22,7 +22,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'admin\HomeController@index');
 
     // ======================== sticker project routes ============================
-    Route::get('/pack/datatable' , 'admin\pack\PackController@datatable'); 
+    Route::get('/pack/datatable' , 'admin\pack\PackController@datatable');
+    Route::get('/pack/select2-categories' , 'admin\pack\PackController@datatable');
     Route::resource('/pack' , 'admin\pack\PackController');
     
     Route::get('/label/datatable' , 'admin\labels\LabelController@datatable'); 

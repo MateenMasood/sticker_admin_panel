@@ -17,7 +17,7 @@ $(document).ready(()=>{
 
     $("#category").select2({
         ajax: {
-            url: "/admin/categories/select2-categories",
+            url: "/admin/pack/select2-categories",
             type: "get",
             dataType: 'json',
             delay: 250,
