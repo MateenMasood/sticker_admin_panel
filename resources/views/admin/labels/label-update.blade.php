@@ -43,7 +43,7 @@
                                         <label>Premium</label>
                                         <div class="custom-control custom-radio">
                                             <input type="radio" class="custom-control-input" id="yes"
-                                                name="status">
+                                                name="status" {{$singleRecord->label_status === "1" ? "checked": ""}}>
                                             <label class="custom-control-label" for="yes">yes</label>
                                         </div>
                                     </div>
@@ -56,7 +56,7 @@
                                 <div class="col-md-12 col-lg-12">
                                     <div class="custom-control custom-radio custom-control-inline">
                                         <input type="radio" class="custom-control-input" id="no"
-                                            name="status">
+                                            name="status" {{$singleRecord->label_status === "0" ? "checked": ""}}>
                                         <label class="custom-control-label" for="no">no</label>
                                     </div>
 

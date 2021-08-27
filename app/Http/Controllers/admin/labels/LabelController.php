@@ -95,7 +95,7 @@ class LabelController extends Controller
             'id' => $id,
         ]);
         $singleRecord  =  Label::find($id);
-        dd($singleRecord);
+        // dd($singleRecord);
         return \View::make('admin.labels.label-update' , compact('singleRecord'));
     }
 
