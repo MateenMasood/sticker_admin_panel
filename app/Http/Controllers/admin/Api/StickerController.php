@@ -40,7 +40,7 @@ class StickerController extends Controller
         $validatedData = $request->validate([
             'category_id' => 'required',
         ]);
-        $list = Stiker::Where('category', $validatedData['category_id'] ) ->orderBy('id')->paginate(10);
+        $list = Stiker::Where('category', $validatedData['category_id'] ) ->orderBy('id')->get();
         return \response()->json($list , 200);
     }
 

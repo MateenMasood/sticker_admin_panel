@@ -15,7 +15,7 @@ class LabelController extends Controller
      */
     public function index()
     {
-        $list = Label::orderBy('id')->paginate(10);
+        $list = Label::orderBy('id')->get();
         return \response()->json($list , 200);
     }
 

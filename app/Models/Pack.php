@@ -9,4 +9,11 @@ class Pack extends Model
 {
     use HasFactory;
 
+
+    public function stickers()
+    {
+        return $this->hasMany('App\Models\Stiker' , 'category');
+
+    }
+
 }

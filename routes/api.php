@@ -16,3 +16,4 @@ use Illuminate\Http\Request;
 Route::middleware('api')->resource('/pack', 'admin\api\PackController');
 Route::middleware('api')->resource('/label', 'admin\api\LabelController');
 Route::middleware('api')->resource('/sticker', 'admin\api\StickerController');
+Route::middleware('api')->resource('/setting', 'admin\api\SettingController');

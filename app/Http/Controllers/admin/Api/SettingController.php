@@ -4,9 +4,9 @@ namespace App\Http\Controllers\admin\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Pack;
+use App\Models\Setting;
 
-class PackController extends Controller
+class SettingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,30 +15,18 @@ class PackController extends Controller
      */
     public function index()
     {
-        $list = Pack::with('stickers' )->orderBy('id')->get();
+        $list = Setting::orderBy('id')->get();
+        $settings = [];
         foreach ($list as $key => $value) {
-            foreach ($value->stickers as $key => $stickerValue) {
-               if (isset($stickerValue->icons) ) {
-                   $icons = json_decode( $stickerValue->icons );
-                   $iconsArray = []; 
-                    foreach ($icons as $key => $Image) {
-                        $iconsArray[$key]['images'] = $Image->name;
-                    } 
-                   $stickerValue['tray_icon'] = $iconsArray;
-                }
-                if (isset($stickerValue->stikers) ) {
-                    $stikers = json_decode( $stickerValue->stikers );
-                    $stkArray = []; 
-                    foreach ($stikers as $key => $Image) {
-                        $stkArray[$key]['images'] = $Image->name;
-                    } 
-                    $stickerValue['sticker_files'] = $stkArray;
-                 }
-               
+            $settings['status'] = "200";
+            $settings[$value->key] = $value->value;
+            if ($value->key === 'is_maintance') {
+                break;
             }
-            
         }
-        return \response()->json($list , 200);
+        $data["settings"] = [$settings];
+        return \response()->json($data , 200);
+
     }
 
     /**
