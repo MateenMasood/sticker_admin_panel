@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Stiker;
+use Illuminate\Support\Facades\Validator;
+
 
 class StickerController extends Controller
 {
@@ -87,5 +89,19 @@ class StickerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function StickerByTag(Request $request)
+    {
+        $validatedData = Validator::make($request->all() , [
+            'tag' => 'required',
+        ]);
+        if ($validatedData->fails()) {
+            return response()->json("please enter tag", 200);
+        }
+
+        // $list = Stiker::where("title","LIKE" , "%$request->tag%")->get();
+        $list = Stiker::whereRaw('FIND_IN_SET("$")', $request->tag)->get();
+        return response()->json($list, 200,);
     }
 }
