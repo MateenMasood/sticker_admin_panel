@@ -78,7 +78,7 @@
                     </a>
                 </li>
                 
-                {{-- <li>
+                <li>
                     <a href="{{ url('admin\hotel') }}" class=" waves-effect">
                         <i class="ti-calendar"></i>
                         <span>@lang('translation.Hotel')</span>
@@ -101,7 +101,7 @@
                         <i class="ti-calendar"></i>
                         <span>@lang('translation.Coupons')</span>
                     </a>
-                </li> --}}
+                </li>
 
                 <li class="menu-title">@lang('translation.Settings')</li>
 

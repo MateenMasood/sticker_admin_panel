@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Exception;
 use Illuminate\Support\Str;
 use App\Http\Requests\StoreSticker;
+use JavaScript;
 
 class StikerController extends Controller
 {
@@ -120,7 +121,13 @@ class StikerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $singleRecord  =  Stiker::where('id',$id)->with('pack')->get();
+        JavaScript::put([
+            'id' => $id,
+            'icons' => json_decode( $singleRecord[0]->icons ),
+            'stikers' => json_decode( $singleRecord[0]->stikers )
+        ]);
+        return \View::make('admin.stikers.stiker-edit' , compact('singleRecord'));
     }
 
     /**
@@ -144,5 +151,18 @@ class StikerController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function datatable()
+    {
+        return \response()->json(Stiker::with('pack')->get(), 200);
+
+    }
+    public function roomTypeFileDelete(Request $request)
+    {
+        $deleteRoomTypeFile = RoomTypeFile::where('file_name' , $request->name);
+        File::delete("storage/uploads/roomsTypeImages/$request->name");
+        $deleteRoomTypeFile->delete();
+
     }
 }

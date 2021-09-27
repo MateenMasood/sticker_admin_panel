@@ -55,12 +55,13 @@
             <div class="card">
                 <div class="card-body">
 
-                    <table id="tblCategories" class="table table-striped table-bordered dt-responsive nowrap"
+                    <table id="tblStikers" class="table table-striped table-bordered dt-responsive nowrap"
                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Title</th>
+                                <th>Category</th>
                                 {{-- <th>Image</th> --}}
                                 <th>status</th>
                                 <th>Action</th>
@@ -91,6 +92,6 @@
     <script src="{{ URL::asset('/assets/js/pages/sweet-alerts.init.js') }}"></script>
 
 
-    <script src="{{ URL::asset('/assets/admin/slides/slides-list.js') }}"></script>
+    <script src="{{ URL::asset('/assets/admin/stikers/stikers-list.js') }}"></script>
 
 @endsection

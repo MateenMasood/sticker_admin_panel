@@ -11,7 +11,7 @@ class Stiker extends Model
 
     public function pack()
     {
-        return $this->belongsTo('App\Models\Pack');
+        return $this->belongsTo('App\Models\Pack','category');
 
     }
 }

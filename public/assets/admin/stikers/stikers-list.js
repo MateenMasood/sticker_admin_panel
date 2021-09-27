@@ -9,18 +9,19 @@ $.ajaxSetup({
 $(document).ready(function () {
 
 
-  var table = $('#tblCategories').DataTable({
+  var table = $('#tblStikers').DataTable({
     lengthChange: false,
     dom: 'Bfrtip',
     buttons: ['copy', 'excel', 'pdf', 'csv' , 'colvis' , 'print'],
 
     ajax: {
-        "url": "/admin/slides/datatable",
+        "url": "/admin/stikers/datatable",
         "dataSrc": ""
     },
     columns: [
       { data : 'id'},
       { data: "title"},
+      { data: "pack.title"},
       { render : function(data, type, row , full) {
         // console.log(row)
         if (row.status == '1') {
@@ -34,7 +35,7 @@ $(document).ready(function () {
        // console.log(row)
          return `
          <div class="glyph">
-             <a href="/admin/promo-code/`+row.id+`/edit"> <i class="mdi mdi-home-edit"></i> </a>
+             <a href="/admin/stikers/`+row.id+`/edit"> <i class="mdi mdi-home-edit"></i> </a>
              <a class="deleteRecord" href="#" onclick="deleteRecord('`+row.id+`')"> <i class="mdi mdi-delete-alert"></i> </a>
          </div>
 

@@ -50,8 +50,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/slides/datatable' , 'admin\slides\SlideController@datatable');
     Route::resource('/slides' , 'admin\slides\SlideController');
 
+    Route::get('/stikers/datatable' , 'admin\stikers\StikerController@datatable');
     Route::resource('/stikers' , 'admin\stikers\StikerController');
+
     Route::resource('/site/settings' , 'admin\settings\SiteSettingController');
+
+
+
 
 
 	Route::post('/hotel/change-status' , 'admin\hotel\HotelController@ChangeStatus');
