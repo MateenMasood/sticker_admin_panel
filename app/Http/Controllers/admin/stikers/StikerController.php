@@ -10,7 +10,7 @@ use Exception;
 use Illuminate\Support\Str;
 use App\Http\Requests\StoreSticker;
 use JavaScript;
-
+use Illuminate\Support\Facades\File;
 class StikerController extends Controller
 {
     /**
@@ -122,6 +122,7 @@ class StikerController extends Controller
     public function edit($id)
     {
         $singleRecord  =  Stiker::where('id',$id)->with('pack')->get();
+        // dd(json_decode($singleRecord[0]->icons));
         JavaScript::put([
             'id' => $id,
             'icons' => json_decode( $singleRecord[0]->icons ),
@@ -158,11 +159,37 @@ class StikerController extends Controller
         return \response()->json(Stiker::with('pack')->get(), 200);
 
     }
-    public function roomTypeFileDelete(Request $request)
+    public function deleteImage(Request $request)
     {
-        $deleteRoomTypeFile = RoomTypeFile::where('file_name' , $request->name);
-        File::delete("storage/uploads/roomsTypeImages/$request->name");
-        $deleteRoomTypeFile->delete();
+        $detail = Stiker::find($request->id);
+        if($request->fileType === 'icon'){
+            $decodedArray = json_decode($detail->icons);
+            $array = array();
+            foreach ($decodedArray as $key => $value) {
+                if ($value->name !== $request->name) {
+                    array_push($array, $value);
+                }
+            }
+            $detail->icons = json_encode( $array );
+            File::delete("storage/$request->path");
+            if($detail->save()){
+                return response()->json("image successfully.");
+            }
+        }
+        else if($request->fileType === 'sticker'){
+            $decodedArray = json_decode($detail->stikers);
+            $array = array();
+            foreach ($decodedArray as $key => $value) {
+                if ($value->name !== $request->name) {
+                    array_push($array, $value);
+                }
+            }
+            $detail->stikers = json_encode( $array );
+            File::delete("storage/$request->path");
+            if($detail->save()){
+                return response()->json("image successfully.");
+            }
+        } 
 
     }
 }

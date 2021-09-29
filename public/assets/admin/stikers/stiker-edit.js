@@ -38,8 +38,8 @@ console.log(assetBaseUrl);
                 console.log(file);
                 $.ajax({
                   type: 'POST',
-                  url: '/admin/rooms-type/rooms-type-file-delete',
-                  data: {name: fileName,request: 'delete'},
+                  url: '/admin/stikers/delete-image',
+                  data: {name: fileName,request: 'delete', id: id, path: file.path, fileType:'sticker'},
                   sucess: function(data){
                      console.log('success: ' + data);
                   }
@@ -61,7 +61,7 @@ console.log(assetBaseUrl);
     
                 // ************************** preview images *********************
                 stikers.forEach(image => {
-                    var mockFile = { name: image.file_name, size: image.size, type: image.mime_type };
+                    var mockFile = { name: image.name, size: image.size, type: image.type, path:  image.path};
                     this.options.addedfile.call(this, mockFile);
                     this.options.thumbnail.call(this, mockFile, assetBaseUrl+"/"+image.path);
                     mockFile.previewElement.classList.add('dz-success');
@@ -122,8 +122,8 @@ console.log(assetBaseUrl);
             console.log(file);
             $.ajax({
               type: 'POST',
-              url: '/admin/rooms-type/rooms-type-file-delete',
-              data: {name: fileName,request: 'delete'},
+              url: '/admin/stikers/delete-image',
+              data: {name: fileName,request: 'delete', id: id, path: file.path, fileType:'icon'},
               sucess: function(data){
                  console.log('success: ' + data);
               }
@@ -145,7 +145,7 @@ console.log(assetBaseUrl);
 
             // ************************** preview images *********************
             icons.forEach(image => {
-                var mockFile = { name: image.file_name, size: image.size, type: image.mime_type };
+                var mockFile = { name: image.name, size: image.size, type: image.type, path:  image.path};
                 this.options.addedfile.call(this, mockFile);
                 this.options.thumbnail.call(this, mockFile, assetBaseUrl+"/"+image.path);
                 mockFile.previewElement.classList.add('dz-success');

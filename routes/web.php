@@ -51,6 +51,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('/slides' , 'admin\slides\SlideController');
 
     Route::get('/stikers/datatable' , 'admin\stikers\StikerController@datatable');
+    Route::post('/stikers/delete-image' , 'admin\stikers\StikerController@deleteImage');
     Route::resource('/stikers' , 'admin\stikers\StikerController');
 
     Route::resource('/site/settings' , 'admin\settings\SiteSettingController');
